@@ -3,17 +3,12 @@ import java.util.*;
 import com.music.*;
 import java.util.Random;
 
-
 public class Database{
 	
-	private List<Song> db;
-	Song tempSong;
-	Random random;
+	public static List<Song> db;
 
-	
-	private Database() {
+	public static void init() {
 		db = new ArrayList<Song>();
-		random = new Random();
 		addSong("Headlines - Drake", "spotify:track:7kfTqGMzIHFWeBeOJALzRf");
 		addSong("Hotline Bling - Drake","spotify:track:6nmz4imkDcmtwMjocAzFSx");
 		addSong("The Hills - The Weeknd","spotify:track:25khomWgBVamSdKw7hzm3l");
@@ -37,21 +32,20 @@ public class Database{
 		addSong("Five More Hours - Deorro x Chris ","spotify:track:6YwLgicpvVuMt1eE2OldwQ");
 		addSong("Magnets - Disclosure, Lorde","spotify:track:2M0wZ9iOCsul9PgKCHnIWT");
 		addSong("Roses - The Chainsmokers","spotify:track:3vv9phIu6Y1vX3jcqaGz5Z");
-	
 	}
 	
-	
-	public void addSong (String sname, String sid){
+	public static void addSong (String sname, String sid){
 		
 		Song newSong = new Song(sname, sid);
 		db.add(newSong);
 		
 	}
 	
-	public Song rmvSong (){
+	public static Song rmvSong (){
+		Random random = new Random();
 		int index = random.nextInt(db.size());
-		tempSong = db.get(index);
+		Song song = db.get(index);
 		db.remove(index);
-		return tempSong;
+		return song;
 	}
 }

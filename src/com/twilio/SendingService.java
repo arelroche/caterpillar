@@ -16,21 +16,17 @@ public class SendingService {
 	public static final String ACCOUNT_SID = "AC09b34d194921b4d7fbdebce89575a6bb";
 	public static final String AUTH_TOKEN = "5945315ca88d07c9670c04173a2d96e5";
 
-	public static void main(String[] args) throws TwilioRestException {
+	public static void send(String number, String body) throws TwilioRestException {
 		TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
 
-		String[] numbers = {"+16478848580", "+16477186738", "+16479819099", "+14169705543"}; 
-		
-		for (String number : numbers) {
-			// Build a filter for the MessageList
-			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			params.add(new BasicNameValuePair("Body", "Hi everyone!"));
-			params.add(new BasicNameValuePair("To", number));
-			params.add(new BasicNameValuePair("From", "+16475594555"));
-	
-			MessageFactory messageFactory = client.getAccount().getMessageFactory();
-			Message message = messageFactory.create(params);
-			System.out.println(message.getSid());
-		}
+		// Build a filter for the MessageList
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("Body", body));
+		params.add(new BasicNameValuePair("To", number));
+		params.add(new BasicNameValuePair("From", "+16475594555"));
+
+		MessageFactory messageFactory = client.getAccount().getMessageFactory();
+		Message message = messageFactory.create(params);
+		System.out.println(message.getSid());
 	}
 }
