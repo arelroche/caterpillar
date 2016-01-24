@@ -27,7 +27,7 @@ public class ActiveSongs {
 		String highestLetter = null;
 		for(String letter : songVotesMap.keySet()) {
 			int tempVote = songVotesMap.get(letter);
-			if (tempVote > highestVote) {
+			if (tempVote >= highestVote) {
 				highestVote = tempVote;
 				highestLetter = letter;
 			}

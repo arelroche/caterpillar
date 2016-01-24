@@ -15,6 +15,7 @@ public class MainClass {
 
 		while(true){
 			Song song = ActiveSongs.popHighestSong();
+			ReceivingService.cellAdded_voted.clear();
 			SpotifyTerminal.play(song.tid);
 		}
 

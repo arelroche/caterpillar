@@ -43,7 +43,8 @@ public class Database{
 	
 	public static Song rmvSong (){
 		Random random = new Random();
-		int index = random.nextInt(db.size());
+		int dbSize = db.size() - 1;
+		int index = random.nextInt(dbSize);
 		Song song = db.get(index);
 		db.remove(index);
 		return song;

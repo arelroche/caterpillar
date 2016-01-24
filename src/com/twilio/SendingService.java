@@ -1,5 +1,6 @@
 package com.twilio;
 
+import com.music.ActiveSongs;
 import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.TwilioRestException;
 import com.twilio.sdk.resource.factory.MessageFactory;
@@ -23,10 +24,26 @@ public class SendingService {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("Body", body));
 		params.add(new BasicNameValuePair("To", number));
-		params.add(new BasicNameValuePair("From", "+16475594555"));
+		params.add(new BasicNameValuePair("From", "+16475609308"));
 
 		MessageFactory messageFactory = client.getAccount().getMessageFactory();
 		Message message = messageFactory.create(params);
-		System.out.println(message.getSid());
+	}
+
+	public static void send(String number) {
+		
+		String messageBody = "";
+		
+		for (String letter : ActiveSongs.letterToSongMap.keySet()){
+			messageBody += letter + ": " +
+					ActiveSongs.letterToSongMap.get(letter).name + "\n";
+		}
+		
+		try {
+			send(number, messageBody);
+		} catch (TwilioRestException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
